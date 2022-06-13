@@ -1,10 +1,8 @@
-package src.data_structures_and_algorithms.Lists.challenge.x1_addBefore;
+package src.udemy.data_structures_and_algorithms.lists.challenge.x1_addBefore;
 
 
-import src.data_structures_and_algorithms.Lists.challenge.Planet;
-import src.data_structures_and_algorithms.Lists.challenge.PlanetNode;
-
-import java.util.Comparator;
+import src.udemy.data_structures_and_algorithms.lists.challenge.Planet;
+import src.udemy.data_structures_and_algorithms.lists.challenge.PlanetNode;
 
 /**
  * Implement double linked list for Planet
@@ -42,6 +40,17 @@ public class DoubleLinkedList {
     public int getSize() {
         return size;
     }
+
+    //TODO Delete after testing
+    public String getHead() {
+        return "HEAD -> " + head.getPlanet();
+    }
+
+    //TODO Delete after testing
+    public String getTail() {
+        return "TAIL -> " + tail.getPlanet();
+    }
+
 
     public void addToTheFront(Planet planet) {
         if (planet == null) throw new IllegalArgumentException("Planet is null");
@@ -118,16 +127,21 @@ public class DoubleLinkedList {
         if (planet == null) throw new IllegalArgumentException("List does not accept null elements. Planet is null");
 
         PlanetNode current = head;
-        while (current != null && !current.getPlanet().equals(planet))
-            current = current.getNext();
+        current = getPlanetNode(planet, current);
 
         if (current == null)
             return null;
 
-        if (current.getNext() != null)
+        if (current == head) {
+            head = current.getNext();
+            current.getNext().setPrev(null);
+        } else if (current == tail) {
+            tail = current.getPrev();
+            current.getPrev().setNext(null);
+        } else {
             current.getNext().setPrev(current.getPrev());
-        if (current.getPrev() != null)
             current.getPrev().setNext(current.getNext());
+        }
 
         current.setNext(null);
         current.setPrev(null);
@@ -140,21 +154,30 @@ public class DoubleLinkedList {
             throw new IllegalArgumentException("List does not accept null elements. Planet is null");
 
         PlanetNode current = head;
-        while (current != null && !current.getPlanet().equals(planet1)) {
-            current = current.getNext();
-        }
+        current = getPlanetNode(planet1, current);
 
         if (current == null) {
             addToTheFront(planet2);
             return;
         }
         PlanetNode newNode = new PlanetNode(planet2);
-        newNode.setNext(current.getNext());
-        newNode.setPrev(current);
-        if (current.getNext() != null) {
-            current.getNext().setPrev(newNode);
+        newNode.setNext(current);
+        newNode.setPrev(current.getPrev());
+        current.setPrev(newNode);
+
+        if (current == head) {
+            head = newNode;
+        } else {
+            current.getPrev().setNext(newNode);
         }
-        current.setNext(newNode);
+        size++;
+    }
+
+    private PlanetNode getPlanetNode(Planet planet, PlanetNode current) {
+        while (current != null && !current.getPlanet().equals(planet)) {
+            current = current.getNext();
+        }
+        return current;
     }
 
 

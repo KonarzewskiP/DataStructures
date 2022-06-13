@@ -1,6 +1,6 @@
-package src.data_structures_and_algorithms.Lists.doubleLinkedList;
+package src.udemy.data_structures_and_algorithms.lists.doubleLinkedList;
 
-import src.data_structures_and_algorithms.Lists.Employee;
+import src.udemy.data_structures_and_algorithms.Employee;
 
 public class Main {
     public static void main(String[] args) {

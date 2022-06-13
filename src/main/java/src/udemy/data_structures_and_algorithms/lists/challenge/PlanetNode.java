@@ -1,4 +1,4 @@
-package src.data_structures_and_algorithms.Lists.challenge;
+package src.udemy.data_structures_and_algorithms.lists.challenge;
 
 public class PlanetNode {
     private Planet planet;

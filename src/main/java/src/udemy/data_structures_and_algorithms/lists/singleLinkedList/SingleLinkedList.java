@@ -1,6 +1,6 @@
-package src.data_structures_and_algorithms.Lists.singleLinkedList;
+package src.udemy.data_structures_and_algorithms.lists.singleLinkedList;
 
-import src.data_structures_and_algorithms.Lists.Employee;
+import src.udemy.data_structures_and_algorithms.Employee;
 
 public class SingleLinkedList {
     private EmployeeNode head;

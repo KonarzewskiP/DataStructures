@@ -1,4 +1,4 @@
-package src.data_structures_and_algorithms.Lists;
+package src.udemy.data_structures_and_algorithms;
 
 public class Employee {
     private String firstName;
